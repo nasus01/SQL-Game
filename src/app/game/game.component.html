@@ -1,0 +1,154 @@
+<div class="container">
+
+  <!-- 🎮 JUEGO -->
+   <div class="vidas">
+  <span *ngFor="let v of [].constructor(vidas)">❤️</span>
+  <span *ngFor="let v of [].constructor(maxVidas - vidas)" class="vacia">🤍</span>
+</div>
+  <div *ngIf="!mostrarPantallaFinal" class="juego">
+
+    <h3>⭐ Puntos: {{puntajeTotal}}</h3>
+    <h3>🎯 Nivel: {{nivelActual + 1}}</h3>
+
+    <h2>🧩 Ordena la consulta SQL correctamente</h2>
+    <h3>❓ {{ niveles[nivelActual].pregunta }}</h3>
+
+    <!-- 🧱 PIEZAS -->
+    <h3>🧱 Piezas:</h3>
+    <div class="zona-piezas">
+      <div 
+        *ngFor="let pieza of piezasDisponibles" 
+        class="pieza pieza-top"
+        (click)="agregarPieza(pieza)">
+        {{pieza}}
+      </div>
+    </div>
+
+    <!-- 📊 RESULTADO -->
+    <div *ngIf="resultadoConsulta.length > 0">
+      <h3>📊 Resultado:</h3>
+      <table>
+        <tr>
+          <th *ngFor="let key of resultadoConsulta[0] | keyvalue">
+            {{key.key}}
+          </th>
+        </tr>
+        <tr *ngFor="let fila of resultadoConsulta">
+          <td *ngFor="let col of fila | keyvalue">
+            {{col.value}}
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 🧠 CONSTRUCCIÓN -->
+    <h3>📌 Construye tu consulta:</h3>
+
+    <div class="zona-drop">
+      <div 
+        *ngFor="let pieza of zonaConstruccion; let i = index"
+        class="pieza"
+        [ngClass]="{
+          'error': esError(i),
+          'correcto': esCorrecto(i)
+        }">
+
+        <span class="texto">{{pieza}}</span>
+
+        <div class="acciones">
+          <button (click)="moverIzquierda(i)">⬅️</button>
+          <button (click)="moverDerecha(i)">➡️</button>
+          <button (click)="eliminarPieza(i)">❌</button>
+        </div>
+
+      </div>
+    </div>
+
+    <br>
+
+    <!-- 🎮 CONTROLES -->
+    <button (click)="validar()">Validar</button>
+    <button (click)="reiniciar()">Reiniciar</button>
+
+    <div *ngIf="respuestaCorrectaFlag && !juegoTerminado">
+      ⭐ Estrellas: {{estrellas}}
+    </div>
+
+    <button 
+      *ngIf="respuestaCorrectaFlag && !juegoTerminado" 
+      (click)="siguienteNivel()">
+      👉 Siguiente nivel
+    </button>
+
+   
+
+    <!-- 💬 MENSAJE -->
+    <div *ngIf="mensaje" class="mensaje" [ngClass]="tipoMensaje">
+      {{mensaje}}
+    </div>
+
+    <!-- 🔄 RESET -->
+    <button (click)="resetJuego()">🔄 Reiniciar juego</button>
+
+    <!-- 🏆 RANKING -->
+    <h3>🏆 Ranking</h3>
+
+    <table class="ranking-tabla" *ngIf="obtenerRanking().length > 0">
+      <tr>
+        <th>#</th>
+        <th>Jugador</th>
+        <th>Puntos</th>
+      </tr>
+
+      <tr *ngFor="let jugador of obtenerRanking(); let i = index"
+          [ngClass]="{
+            'top1': i === 0,
+            'top2': i === 1,
+            'top3': i === 2
+          }">
+
+        <td>
+          <span *ngIf="i === 0">🥇</span>
+          <span *ngIf="i === 1">🥈</span>
+          <span *ngIf="i === 2">🥉</span>
+          <span *ngIf="i > 2">{{i + 1}}</span>
+        </td>
+
+        <td>{{jugador.nombre}}</td>
+        <td>{{jugador.puntos}}</td>
+
+      </tr>
+    </table>
+
+    <p *ngIf="obtenerRanking().length === 0">
+      😢 Aún no hay jugadores en el ranking
+    </p>
+
+  </div>
+
+
+  <!-- 🎉 PANTALLA FINAL -->
+  <div class="pantalla-final" *ngIf="mostrarPantallaFinal">
+
+    <div class="final-card">
+
+      <h1>🎉 ¡Juego completado!</h1>
+
+      <h2>⭐ Puntaje total: {{puntajeTotal}}</h2>
+
+      <input 
+        type="text" 
+        placeholder="Ingresa tu nombre"
+        [(ngModel)]="nombreJugador"
+      />
+
+      <div class="botones-final">
+        <button (click)="guardarRanking()">💾 Guardar en ranking</button>
+        <button (click)="resetJuego()">🔄 Jugar de nuevo</button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

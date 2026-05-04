@@ -1,0 +1,297 @@
+/* 🌍 CONTENEDOR GENERAL */
+.container {
+  min-height: 100vh;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+
+  background: linear-gradient(180deg, #0f172a, #1e293b);
+  border-radius: 12px;
+
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  color: white;
+}
+
+
+/* 🎯 TÍTULOS */
+h2, h3 {
+  margin-bottom: 10px;
+}
+
+
+/* 🧱 ZONA PIEZAS */
+.zona-piezas {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+
+/* 📌 ZONA CONSTRUCCIÓN */
+.zona-drop {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 80px;
+  padding: 10px;
+
+  border: 2px dashed #999;
+  border-radius: 6px;
+
+  flex-wrap: wrap;
+  background: #f1f5f9; /* gris claro mejor que blanco puro */
+}
+
+
+/* 🧩 PIEZA BASE */
+.pieza {
+  background: #4caf50;
+  color: white;
+
+  border-radius: 6px;
+  padding: 8px 10px;
+
+  font-weight: 500;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-width: 90px;
+}
+
+
+/* 🔵 PIEZAS SUPERIORES */
+.pieza-top {
+  background: #1976d2;
+  cursor: pointer;
+  padding: 10px 14px;
+}
+
+.pieza-top:hover {
+  transform: scale(1.05);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+
+/* 📝 TEXTO */
+.texto {
+  margin-bottom: 6px;
+}
+
+
+/* 🎮 ACCIONES */
+.acciones {
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.pieza:hover .acciones {
+  opacity: 1;
+}
+
+
+/* 🔘 BOTONES INTERNOS */
+.acciones button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 2px;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+.acciones button:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+
+/* 🔘 BOTONES GENERALES */
+button {
+  margin-right: 8px;
+  padding: 6px 12px;
+
+  border: none;
+  border-radius: 5px;
+
+  cursor: pointer;
+  background: #1976d2;
+  color: white;
+}
+
+button:hover {
+  background: #125aa0;
+}
+
+
+/* 👉 BOTÓN VERDE (último) */
+button:last-child {
+  background: #4caf50;
+}
+
+button:last-child:hover {
+  background: #3d8b40;
+}
+
+
+/* 💬 MENSAJES */
+.mensaje {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  width: fit-content;
+}
+
+.success {
+  background-color: #4caf50;
+  color: white;
+}
+
+.error {
+  background-color: #f44336;
+  color: white;
+}
+
+
+/* 🎯 VALIDACIÓN DE PIEZAS */
+.pieza.error {
+  background-color: #f44336;
+}
+
+.pieza.correcto {
+  background-color: #4caf50;
+}
+
+
+/* 📊 TABLAS */
+table {
+  margin-top: 10px;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+
+  background: white;
+  color: black;
+}
+
+th, td {
+  padding: 8px 10px;
+}
+
+th {
+  background: #333;
+  color: white;
+}
+
+td {
+  background: #f5f5f5;
+  color: black;
+}
+
+
+/* 🏆 RANKING */
+.ranking-tabla {
+  width: 300px;
+}
+
+/* 🥇🥈🥉 */
+.top1 {
+  background: gold;
+  font-weight: bold;
+}
+
+.top2 {
+  background: silver;
+}
+
+.top3 {
+  background: #cd7f32;
+}
+
+
+/* 🎉 PANTALLA FINAL */
+.pantalla-final {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0,0,0,0.9);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 999;
+}
+
+
+/* 🎉 TARJETA FINAL */
+.final-card {
+  background: #1e293b;
+  padding: 40px;
+  border-radius: 15px;
+
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.final-card h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+
+/* INPUT FINAL */
+.final-card input {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  margin-top: 10px;
+  width: 220px;
+}
+
+
+/* BOTONES FINAL */
+.botones-final button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.vidas {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.vidas span {
+  margin-right: 5px;
+  transition: transform 0.2s;
+}
+
+.vidas span:hover {
+  transform: scale(1.2);
+}
+
+.vacia {
+  opacity: 0.4;
+}
+.vidas span {
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(1.5); }
+  100% { transform: scale(1); }
+}
